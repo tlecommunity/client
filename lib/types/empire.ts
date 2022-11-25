@@ -1,18 +1,7 @@
-import { ServerDate, IntBool, EmpireName } from '../types';
+import { ServerDate, IntBool } from '../types';
+import { EmpireBlock, ServerBlock } from './status';
 
-export interface BodiesList {
-  empire_id: number;
-  empire_name: string;
-  id: number;
-  name: string;
-  orbit: number;
-  x: number;
-  y: number;
-  zone: string;
-  type: string;
-}
-
-export interface EmpireCreateParams {
+export interface CreateParams {
   name: string;
   password: string;
   password1: string;
@@ -22,13 +11,13 @@ export interface EmpireCreateParams {
   invite_code?: string;
 }
 
-export interface EmpireCreateResponse {
+export interface CreateResponse {
   empire_id: number;
 }
 
-export interface EmpireGetBoostsParams {}
+export interface GetBoostsParams {}
 
-export interface EmpireGetBoostsResult {
+export interface GetBoostsResult {
   boosts: {
     food: ServerDate;
     ore: ServerDate;
@@ -37,84 +26,44 @@ export interface EmpireGetBoostsResult {
     happiness: ServerDate;
     storage: ServerDate;
     building: ServerDate;
-    ship_build: ServerDate;
-    ship_speed: ServerDate;
     spy_training: ServerDate;
   };
 }
 
-export interface EmpireBoostParams {
+export interface BoostParams {
   type: string;
   weeks?: number;
 }
 
-export interface EmpireGetStatusParams {}
+export interface GetStatusParams {}
 
-export interface EmpireGetStatusResponse {
-  empire: {
-    bodies: {
-      colonies: BodiesList[];
-      mystations?: BodiesList[];
-      ourstations?: BodiesList[];
-      babies?: {
-        [index: string]: {
-          alliance_id?: number;
-          id: number;
-          has_new_messages: number;
-          bodies: BodiesList[];
-        };
-      };
-    };
-    essentia: number;
-    has_new_messages: number;
-    home_planet_id: number;
-    id: number;
-    insurrect_value: number;
-    is_isolationist: IntBool;
-    latest_message_id: number;
-    name: EmpireName;
-    next_colony_cost: number;
-    next_colony_srcs: number;
-    next_station_cost: number;
-    primary_embassy_id: number;
-    rpc_count: number;
-    self_destruct_active: IntBool;
-    self_destruct_date: ServerDate;
-    status_message: string;
-    tech_level: number;
-  };
-  server: {
-    rpc_limit: number;
-    star_map_size: {
-      x: Array<2>;
-      y: Array<2>;
-      z: Array<2>;
-    };
-    time: string;
-    version: string;
+export interface GetStatusResponse {
+  status: {
+    empire: EmpireBlock;
+    server: ServerBlock;
   };
 }
 
-export interface EmpireFetchCaptchaParams {}
+export interface FetchCaptchaParams {}
 
-export interface EmpireFetchCaptchaResponse {
+export interface FetchCaptchaResponse {
   guid: string;
   url: string;
 }
 
-export interface EmpireLoginParams {
+export interface LoginParams {
   name: string;
   password: string;
   api_key: string;
   browser: string;
 }
 
-export interface EmpireLoginResponse {
+export interface LoginResponse {
   session_id: string;
 }
 
-export interface EmpireLogoutParams {}
+export interface LogoutParams {}
 
-export interface EmpireLogoutResponse {
+export interface LogoutResponse {
   logout: IntBool;
 }

@@ -75,15 +75,19 @@ export interface SpyTrainingBuilding extends Building {
   };
 }
 
-export interface BuildingsViewResponse {
+export interface ViewParams {
+  building_id: number;
+}
+
+export interface ViewResponse {
   building: Building;
 }
 
-export interface BuildingsUpgradeParams {
+export interface UpgradeParams {
   0: number;
 }
 
-export interface BuildingsUpgradeResponse {
+export interface UpgradeResponse {
   building: {
     id: number;
     pending_build: {
@@ -95,16 +99,16 @@ export interface BuildingsUpgradeResponse {
   };
 }
 
-export interface BuildingsDowngradeParams {
+export interface DowngradeParams {
   0: number;
 }
 
-export interface BuildingsDowngradeResponse {}
+export interface DowngradeResponse {}
 
-export interface BuildingsDemolishParams {
+export interface DemolishParams {
   0: number;
 }
 
-export interface BuildingsDemolishResponse {
+export interface DemolishResponse {
   building: Building;
 }

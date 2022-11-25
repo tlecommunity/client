@@ -7,12 +7,14 @@ import { LacunaConfig } from './types';
 
 class Lacuna {
   body: endpoints.Body;
-  buildings: endpoints.Buildings;
+  buildings: endpoints.Building;
   config: Config;
   empire: endpoints.Empire;
   log: Log;
   server: Server;
   session: Session;
+  university: endpoints.Building;
+  spacePort: endpoints.SpacePort;
 
   constructor(config: LacunaConfig) {
     this.log = new Log(this);
@@ -23,9 +25,14 @@ class Lacuna {
     //
     // Endpoints
     //
-    this.body = new endpoints.Body(this);
-    this.buildings = new endpoints.Buildings(this);
-    this.empire = new endpoints.Empire(this);
+    this.body = new endpoints.Body(this, 'body');
+    this.empire = new endpoints.Empire(this, 'empire');
+
+    //
+    // Buildings
+    //
+    this.university = new endpoints.Building(this, 'university');
+    this.spacePort = new endpoints.SpacePort(this, 'spaceport');
   }
 
   async authenticate(name: string, password: string) {
@@ -38,6 +45,10 @@ class Lacuna {
 
     this.session.set(res.session_id);
     this.log.info(`Logged in as ${name}`);
+  }
+
+  buildingFromUrl(url: string) {
+    return new endpoints.Building(this, url);
   }
 }
 

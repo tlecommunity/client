@@ -13,15 +13,16 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest', // Transform TypeScript files using ts-jest
   },
 
-  // A list of paths to modules that run some code to configure or set up the testing framework before each test file in the suite is executed
-  // https://jestjs.io/docs/configuration#setupfilesafterenv-array
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-
   // Code coverage config
   // https://jestjs.io/docs/configuration#collectcoveragefrom-array
   coverageDirectory: '<rootDir>/coverage/',
   collectCoverageFrom: ['<rootDir>/lib/**/*.{ts,tsx}', '!**/node_modules/**', '!**/*.d.ts'],
+  coveragePathIgnorePatterns: ['<rootDir>/lib/__utils__/', '<rootDir>/node_modules/'],
 
   verbose: true,
   testTimeout: 30000,
+
+  testPathIgnorePatterns: ['/__utils__/'],
+
+  clearMocks: true,
 };

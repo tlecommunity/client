@@ -8,3 +8,12 @@ test('authenticate', async () => {
 
   expect(lacuna.session.get()).not.toEqual('');
 });
+
+test('buildingFromUrl', () => {
+  const lacuna = new Lacuna({ serverUrl: 'localhost' });
+
+  const pcc = lacuna.buildingFromUrl('planetarycommand');
+
+  expect(pcc).toBeDefined();
+  expect(pcc.url).toBe('planetarycommand');
+});

@@ -13,6 +13,7 @@ interface ServerRequest {
 interface ServerError {
   code: number;
   message: string;
+  data: any;
 }
 
 interface RequestBody {
@@ -24,7 +25,7 @@ interface RequestBody {
 
 class Server {
   lacuna: Lacuna;
-  id: Number;
+  id: number;
 
   constructor(lacuna: Lacuna) {
     this.lacuna = lacuna;
@@ -36,7 +37,11 @@ class Server {
 
     if (options.addSession === true && sessionId) {
       if (_.isArray(options.params)) {
-        this.lacuna.log.warn(`${_.capitalize(options.module)}#${options.method} called with positional args. This will go away very soon!`);
+        this.lacuna.log.warn(
+          `${_.capitalize(options.module)}#${
+            options.method
+          } called with positional args. This will go away very soon!`
+        );
         options.params = [sessionId].concat(options.params);
       } else {
         options.params = { ...options.params, session_id: sessionId };
@@ -56,7 +61,7 @@ class Server {
   }
 
   createUrl(options: ServerRequest) {
-    return this.lacuna.config.serverUrl + options.module;
+    return new URL(options.module, this.lacuna.config.serverUrl).href;
   }
 
   async sendRequest(url: string, data: string, options: ServerRequest, retry: Function) {
@@ -69,7 +74,7 @@ class Server {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
       });
 
       if (response.status === 200 || response.statusText === 'ok') {
@@ -90,6 +95,7 @@ class Server {
       const error: ServerError = e?.response?.data?.error || {
         code: -1,
         message: e.response.responseText || 'Could not communicate with server',
+        data: {},
       };
 
       if (error.code === 1016) {
@@ -97,7 +103,7 @@ class Server {
         this.lacuna.log.error('Captcha requested but we cannot handle it');
       } else {
         // TODO
-        console.error(error.message);
+        console.error(error.code, error.message, error.data);
       }
     }
 
@@ -117,7 +123,7 @@ class Server {
     };
 
     return this.sendRequest(url, data, options, retry);
-  };
+  }
 }
 
 export default Server;

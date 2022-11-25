@@ -81,82 +81,82 @@ export type Fleet = {
   };
 };
 
-export interface SpacePortViewAllFleetsParams {
+export interface ViewAllFleetsParams {
   building_id: number;
   paging?: Paging;
   filter?: Filter;
   sort?: string;
 }
 
-export interface SpacePortViewAllFleetsResponse {
+export interface ViewAllFleetsResponse {
   fleets: Fleet[];
   number_of_fleets: number;
 }
 
-export interface SpacePortViewTravellingFleetsParams {
+export interface ViewTravellingFleetsParams {
   building_id: number;
   paging?: Paging;
   filter?: Filter;
   sort?: string;
 }
 
-export interface SpacePortViewTravellingFleetsResponse {
+export interface ViewTravellingFleetsResponse {
   travelling: Fleet[];
   number_of_fleets_travelling: number;
   number_of_ships_travelling: number;
 }
 
-export interface SpacePortViewAvailableFleetsParams {
+export interface ViewAvailableFleetsParams {
   body_id: number;
   target: Target;
   filter?: Filter;
   sort?: string;
 }
 
-export interface SpacePortViewAvailableFleetsResponse {
+export interface ViewAvailableFleetsResponse {
   available: Fleet[];
 }
 
-export interface SpacePortViewUnavailableFleetsParams {
+export interface ViewUnavailableFleetsParams {
   body_id: number;
   target: Target;
   filter?: Filter;
   sort?: string;
 }
 
-export interface SpacePortViewUnavailableFleetsResponse {
+export interface ViewUnavailableFleetsResponse {
   unavailable: Fleet[];
 }
 
-export interface SpacePortViewOrbitingFleetsParams {
+export interface ViewOrbitingFleetsParams {
   target: Target;
   filter?: Filter;
   sort?: string;
 }
 
-export interface SpacePortViewOrbitingFleetsResponse {
+export interface ViewOrbitingFleetsResponse {
   orbiting: Fleet[];
 }
 
-export interface SpacePortViewIncomingFleetsParams {
+export interface ViewIncomingFleetsParams {
   target: Target;
   filter?: Filter;
   sort?: string;
 }
 
-export interface SpacePortViewIncomingFleetsResponse {
+export interface ViewIncomingFleetsResponse {
   incoming: Fleet[];
   number_of_incoming_fleets: number;
   number_of_incoming_ships: number;
 }
 
-export interface SpacePortSendFleetParams {
+export interface SendFleetParams {
   fleet_id: number;
   target: Target;
   quantity: number;
 }
 
-export interface SpacePortSendFleetResponse {
+export interface SendFleetResponse {
   // "id" : "id-goes-here",
   // "quantity" : 1,
   // "task" : "Travelling",

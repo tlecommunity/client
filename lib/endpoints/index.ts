@@ -1,5 +1,6 @@
 import Body from './body';
-import Buildings from './buildings';
+import Building from './building';
 import Empire from './empire';
+import SpacePort from './buildings/space-port';
 
-export { Empire, Body, Buildings };
+export { Empire, Body, Building, SpacePort };
