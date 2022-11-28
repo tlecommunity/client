@@ -5,7 +5,7 @@ const LogLevels = {
   warn: 200,
   info: 300,
   debug: 400,
-}
+};
 
 type Loggable = string | object | Array<any> | undefined | null;
 
