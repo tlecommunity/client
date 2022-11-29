@@ -15,8 +15,10 @@
     }
   },
   "scripts": {
+    "prepare": "npm run types && npm test && npm run build",
     "build": "vite build && tsc --emitDeclarationOnly --outDir dist",
     "test": "jest --coverage",
+    "types": "tsc --noEmit",
     "lint": "prettier --check **/*.{ts,tsx,md,js,jsx,css,scss,yml}",
     "lint:fix": "prettier --write **/*.{ts,tsx,md,js,jsx,css,scss,yml}"
   },
