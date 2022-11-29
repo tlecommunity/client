@@ -19,13 +19,13 @@ test('getBuildings', async () => {
 test('rearrangeBuildings', async () => {
   console.warn = jest.fn();
 
-  const res = await lacuna.body.rearrangeBuildings([empire.home_planet_id, []]);
+  const res = await lacuna.body.rearrangeBuildings({
+    body_id: empire.home_planet_id,
+    arrangement: [],
+  });
 
   expect(res.body).toBeDefined();
   expect(res.moved).toStrictEqual([]);
-  expect(console.warn).toHaveBeenLastCalledWith(
-    'Body#rearrange_buildings called with positional args. This will go away very soon!'
-  );
 });
 
 test('getStatus', async () => {

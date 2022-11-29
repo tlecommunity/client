@@ -74,8 +74,8 @@ export interface GetBodyStatusResponse {
 }
 
 export interface RearrangeBuildingsParams {
-  0: number;
-  1: Array<{
+  body_id: number;
+  arrangement: Array<{
     id: number;
     x: number;
     y: number;

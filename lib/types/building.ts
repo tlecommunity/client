@@ -84,7 +84,7 @@ export interface ViewResponse {
 }
 
 export interface UpgradeParams {
-  0: number;
+  building_id: number;
 }
 
 export interface UpgradeResponse {
@@ -100,13 +100,13 @@ export interface UpgradeResponse {
 }
 
 export interface DowngradeParams {
-  0: number;
+  building_id: number;
 }
 
 export interface DowngradeResponse {}
 
 export interface DemolishParams {
-  0: number;
+  building_id: number;
 }
 
 export interface DemolishResponse {
