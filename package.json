@@ -1,5 +1,5 @@
 {
-  "name": "@tlecommunity/lacuna",
+  "name": "@tlecommunity/client",
   "version": "0.1.0",
   "description": "API Client for the community edition of The Lacuna Expanse",
   "main": "",
