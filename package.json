@@ -2,10 +2,20 @@
   "name": "@tlecommunity/client",
   "version": "0.1.0",
   "description": "API Client for the community edition of The Lacuna Expanse",
-  "main": "",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/client.umd.js",
+  "module": "./dist/client.mjs",
+  "types": "./dist/",
+  "exports": {
+    ".": {
+      "import": "./dist/client.mjs",
+      "require": "./dist/client.umd.js"
+    }
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && tsc --emitDeclarationOnly --outDir dist",
     "test": "jest --coverage",
     "lint": "prettier --check **/*.{ts,tsx,md,js,jsx,css,scss,yml}",
     "lint:fix": "prettier --write **/*.{ts,tsx,md,js,jsx,css,scss,yml}"

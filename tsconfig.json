@@ -3,6 +3,10 @@
     "target": "es6",
     "module": "es6",
     "esModuleInterop": true,
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "declaration": true
+  },
+  "include": ["lib/"],
+  "exclude": ["**/__tests__/"]
 }
