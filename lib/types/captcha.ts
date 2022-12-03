@@ -1,13 +1,13 @@
-export interface CaptchaFetchParams {}
+export interface FetchParams {}
 
-export interface CaptchaFetchResponse {
+export interface FetchResponse {
   guid: string;
   url: string;
 }
 
-export interface CaptchaSolveParams {
+export interface SolveParams {
   guid: string;
   solution: string;
 }
 
-export interface CaptchaSolveResponse {}
+export interface SolveResponse {}

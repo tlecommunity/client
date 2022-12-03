@@ -8,6 +8,7 @@ import { LacunaConfig } from './types';
 class Lacuna {
   body: endpoints.Body;
   buildings: endpoints.Building;
+  captcha: endpoints.Captcha;
   config: Config;
   empire: endpoints.Empire;
   log: Log;
@@ -26,6 +27,7 @@ class Lacuna {
     // Endpoints
     //
     this.body = new endpoints.Body(this, 'body');
+    this.captcha = new endpoints.Captcha(this, 'captcha');
     this.empire = new endpoints.Empire(this, 'empire');
 
     //
