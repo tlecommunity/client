@@ -59,17 +59,11 @@ test('getStatus', async () => {
 
 test('setBoost', async () => {
   const lacuna = await getLacuna();
+  console.error = jest.fn();
 
-  const { boosts } = await lacuna.empire.setBoost({ type: 'building', weeks: 0 });
+  await lacuna.empire.setBoost({ type: 'invalidtype', weeks: -0 });
 
-  expect(boosts.food).toBeDefined();
-  expect(boosts.ore).toBeDefined();
-  expect(boosts.water).toBeDefined();
-  expect(boosts.energy).toBeDefined();
-  expect(boosts.storage).toBeDefined();
-  expect(boosts.spy_training).toBeDefined();
-  expect(boosts.building).toBeDefined();
-  expect(boosts.happiness).toBeDefined();
+  expect(console.error).toHaveBeenCalled();
 });
 
 test('fetchCaptcha', async () => {
