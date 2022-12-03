@@ -1,4 +1,4 @@
-import { ServerDate } from '../types';
+import { ServerDate } from '.';
 
 export interface Building {
   id: number;

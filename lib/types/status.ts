@@ -1,4 +1,4 @@
-import { ServerDate, IntBool, EmpireName, MapLocation } from '../types';
+import { ServerDate, IntBool, EmpireName, MapLocation } from '.';
 
 export interface BodiesList {
   empire_id: number;

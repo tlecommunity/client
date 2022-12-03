@@ -1,4 +1,4 @@
-import { ServerDate, IntBool } from '../types';
+import { ServerDate, IntBool } from '.';
 import { EmpireBlock, ServerBlock } from './status';
 
 export interface CreateParams {

@@ -1,4 +1,4 @@
-import { IntBool } from '../types';
+import { IntBool } from '.';
 
 export interface BuildableFleet {
   attributes: {
