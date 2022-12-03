@@ -28,7 +28,7 @@ test('rearrangeBuildings', async () => {
   expect(res.moved).toStrictEqual([]);
 });
 
-test('getStatus', async () => {
+test.skip('getStatus', async () => {
   const res = await lacuna.body.getStatus({ body_id: empire.home_planet_id });
   expect(res.body).toBeDefined();
   expect(res.empire).toBeDefined();
