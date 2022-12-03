@@ -11,6 +11,7 @@ class Lacuna {
   captcha: endpoints.Captcha;
   config: Config;
   empire: endpoints.Empire;
+  essentiaVein: endpoints.EssentiaVein;
   log: Log;
   server: Server;
   session: Session;
@@ -33,6 +34,7 @@ class Lacuna {
     //
     // Buildings
     //
+    this.essentiaVein = new endpoints.EssentiaVein(this, 'essentiavein');
     this.university = new endpoints.Building(this, 'university');
     this.spacePort = new endpoints.SpacePort(this, 'spaceport');
   }

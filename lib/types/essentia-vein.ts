@@ -1,10 +1,10 @@
 import { Building } from './building';
 
-export interface EssentiaVeinDrainParams {
+export interface DrainParams {
   0: number;
   1: number;
 }
 
-export interface EssentiaVeinDrainResponse {
+export interface DrainResponse {
   building: Building;
 }
