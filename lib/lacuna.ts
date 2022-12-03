@@ -15,8 +15,10 @@ class Lacuna {
   log: Log;
   server: Server;
   session: Session;
-  university: endpoints.Building;
+  shipyard: endpoints.Shipyard;
   spacePort: endpoints.SpacePort;
+  stats: endpoints.Stats;
+  university: endpoints.Building;
 
   constructor(config: LacunaConfig) {
     this.log = new Log(this);
@@ -30,13 +32,15 @@ class Lacuna {
     this.body = new endpoints.Body(this, 'body');
     this.captcha = new endpoints.Captcha(this, 'captcha');
     this.empire = new endpoints.Empire(this, 'empire');
+    this.stats = new endpoints.Stats(this, 'stats');
 
     //
     // Buildings
     //
     this.essentiaVein = new endpoints.EssentiaVein(this, 'essentiavein');
-    this.university = new endpoints.Building(this, 'university');
+    this.shipyard = new endpoints.Shipyard(this, 'shipyard');
     this.spacePort = new endpoints.SpacePort(this, 'spaceport');
+    this.university = new endpoints.Building(this, 'university');
   }
 
   async authenticate(name: string, password: string) {

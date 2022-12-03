@@ -39,25 +39,26 @@ export interface FleetBeingWorkedOn {
   date_completed: string;
 }
 
-export interface ShipyardViewBuildQueueParams {
+export interface ViewBuildQueueParams {
   building_id: number;
   page_number?: number;
   items_per_page?: number;
   no_paging?: IntBool;
 }
 
-export interface ShipyardViewBuildQueueResponse {
-  number_of_fleets: number;
+export interface ViewBuildQueueResponse {
+  number_of_fleets_building: number;
+  number_of_ships_building: number;
   cost_to_subsidize: number;
   fleets_building: Array<FleetBeingWorkedOn>;
 }
 
-export interface ShipyardGetBuildableParams {
+export interface GetBuildableParams {
   building_id: number;
   tag?: string;
 }
 
-export interface ShipyardGetBuildableResponse {
+export interface GetBuildableResponse {
   build_queue_max: number;
   build_queue_used: number;
   docks_available: number;
@@ -66,17 +67,17 @@ export interface ShipyardGetBuildableResponse {
   };
 }
 
-export interface ShipyardBuildFleetParams {
+export interface BuildFleetParams {
   building_ids: number[];
   type: string;
   quantity: number;
   auto_select: string;
 }
 
-export interface ShipyardBuildFleetResponse extends ShipyardViewBuildQueueResponse {}
+export interface BuildFleetResponse extends ViewBuildQueueResponse {}
 
-export interface ShipyardSubsidizeBuildQueueParams {
+export interface SubsidizeBuildQueueParams {
   building_id: number;
 }
 
-export interface ShipyardSubsidizeBuildQueueResponse extends ShipyardViewBuildQueueResponse {}
+export interface SubsidizeBuildQueueResponse extends ViewBuildQueueResponse {}

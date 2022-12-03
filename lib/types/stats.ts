@@ -1,6 +1,6 @@
 export interface StatsCreditsParams {}
 
-export interface StatsCreditsResult {
+export interface CreditsResult {
   [index: number]: {
     [index: string]: string[];
   };
