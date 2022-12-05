@@ -4,10 +4,12 @@ import Config from './core/config';
 import Server from './core/server';
 import Session from './core/session';
 import { LacunaConfig } from './types';
+import { version } from '../package.json';
 
 class Lacuna {
+  version = version;
+
   body: endpoints.Body;
-  buildings: endpoints.Building;
   captcha: endpoints.Captcha;
   config: Config;
   empire: endpoints.Empire;
