@@ -1,24 +1,24 @@
 import Lacuna from '../lacuna';
 import _ from 'lodash';
 import { getLacuna } from '../__utils__/get-lacuna';
-import { int } from '../core/util';
 
 let lacuna: Lacuna;
-let universityId: string;
+let pccId: number;
 
 beforeAll(async () => {
   lacuna = await getLacuna();
-  const { status } = await lacuna.empire.getStatus();
-  const { buildings } = await lacuna.body.getBuildings({ body_id: status.empire.home_planet_id });
-  universityId = _.chain(buildings)
+  const { empire } = await lacuna.empire.getStatus();
+  const { buildings } = await lacuna.body.getBuildings({ body_id: empire.home_planet_id });
+  pccId = _.chain(buildings)
     .keys()
-    .filter((key) => buildings[key].name === 'University')
+    .filter((key) => buildings[key].name === 'Planetary Command Center')
     .first()
+    .toInteger()
     .value();
 });
 
 test('view', async () => {
-  const res = await lacuna.university.view({ building_id: int(universityId) });
+  const res = await lacuna.planetaryCommand.view({ building_id: pccId });
   expect(res.building).toBeDefined();
-  expect(res.building.name).toBe('University');
+  expect(res.building.name).toBe('Planetary Command Center');
 });

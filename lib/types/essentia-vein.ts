@@ -1,8 +1,8 @@
 import { Building } from './building';
 
 export interface DrainParams {
-  0: number;
-  1: number;
+  buildingId: number;
+  times: number;
 }
 
 export interface DrainResponse {

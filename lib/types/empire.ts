@@ -15,9 +15,9 @@ export interface CreateResponse {
   empire_id: number;
 }
 
-export interface GetBoostsParams {}
+export interface ViewBoostsParams {}
 
-export interface GetBoostsResult {
+export interface ViewBoostsResult {
   boosts: {
     food: ServerDate;
     ore: ServerDate;
@@ -38,10 +38,8 @@ export interface BoostParams {
 export interface GetStatusParams {}
 
 export interface GetStatusResponse {
-  status: {
-    empire: EmpireBlock;
-    server: ServerBlock;
-  };
+  empire: EmpireBlock;
+  server: ServerBlock;
 }
 
 export interface FetchCaptchaParams {}
@@ -62,8 +60,4 @@ export interface LoginResponse {
   session_id: string;
 }
 
-export interface LogoutParams {}
-
-export interface LogoutResponse {
-  logout: IntBool;
-}
+export type LogoutResponse = IntBool;

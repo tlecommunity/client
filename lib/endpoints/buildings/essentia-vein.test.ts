@@ -9,12 +9,8 @@ beforeAll(async () => {
 
 test('drain', async () => {
   console.error = jest.fn();
-  console.warn = jest.fn();
 
-  await lacuna.essentiaVein.drain([123456789, 123456789]);
+  await lacuna.essentiaVein.drain({ buildingId: 123456789, times: 123456789 });
 
   expect(console.error).toHaveBeenCalled();
-  expect(console.warn).toHaveBeenCalledWith(
-    'Essentiavein#drain called with positional args. This will go away very soon!'
-  );
 });

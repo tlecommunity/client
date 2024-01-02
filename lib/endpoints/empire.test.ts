@@ -18,7 +18,7 @@ test('login with errors', async () => {
 test('login', async () => {
   const lacuna = new Lacuna({ serverUrl: 'http://localhost:8080/' });
   const res = await lacuna.empire.login({
-    name: '1vasari',
+    name: 'natalie',
     password: '1234qwer',
     browser: 'todo',
     api_key: 'anonymous',
@@ -29,13 +29,13 @@ test('login', async () => {
 test('logout', async () => {
   const lacuna = await getLacuna();
   const res = await lacuna.empire.logout();
-  expect(res.logout).toBe(1);
+  expect(res).toBe(1);
 });
 
-test('getBoosts', async () => {
+test('viewBoosts', async () => {
   const lacuna = await getLacuna();
 
-  const { boosts } = await lacuna.empire.getBoosts();
+  const { boosts } = await lacuna.empire.viewBoosts();
 
   expect(boosts.food).toBeDefined();
   expect(boosts.ore).toBeDefined();
@@ -52,9 +52,9 @@ test('getStatus', async () => {
 
   const res = await lacuna.empire.getStatus();
 
-  expect(res.status.empire).toBeDefined();
-  expect(res.status.server).toBeDefined();
-  expect(res.status.empire.name).toBe('1vasari');
+  expect(res.empire).toBeDefined();
+  expect(res.server).toBeDefined();
+  expect(res.empire.name).toBe('natalie');
 });
 
 test('setBoost', async () => {

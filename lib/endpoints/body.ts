@@ -12,20 +12,16 @@ class Body extends Endpoint {
     this.url = url;
   }
 
-  getBodyStatus(params: B.GetBodyStatusParams): Promise<B.GetBodyStatusResponse> {
-    return this.callWithSession('get_body_status', params);
-  }
-
   getBuildings(params: B.GetBuildingsParams): Promise<B.GetBuildingsResponse> {
-    return this.callWithSession('get_buildings', params);
+    return this.callWithSession('get_buildings', [params.body_id]);
   }
 
   getStatus(params: B.GetStatusParams): Promise<B.GetStatusResponse> {
-    return this.callWithSession('get_status', params);
+    return this.callWithSession('get_status', [params.body_id]);
   }
 
   rearrangeBuildings(params: B.RearrangeBuildingsParams): Promise<B.RearrangeBuildingsResponse> {
-    return this.callWithSession('rearrange_buildings', params);
+    return this.callWithSession('rearrange_buildings', [params.body_id, params.arrangement]);
   }
 }
 

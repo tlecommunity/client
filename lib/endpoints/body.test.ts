@@ -8,7 +8,7 @@ let empire: EmpireBlock;
 beforeAll(async () => {
   lacuna = await getLacuna();
   const res = await lacuna.empire.getStatus();
-  empire = res.status.empire;
+  empire = res.empire;
 });
 
 test('getBuildings', async () => {
@@ -28,14 +28,9 @@ test('rearrangeBuildings', async () => {
   expect(res.moved).toStrictEqual([]);
 });
 
-test.skip('getStatus', async () => {
+test('getStatus', async () => {
   const res = await lacuna.body.getStatus({ body_id: empire.home_planet_id });
   expect(res.body).toBeDefined();
   expect(res.empire).toBeDefined();
   expect(res.server).toBeDefined();
-});
-
-test('getBodyStatus', async () => {
-  const res = await lacuna.body.getBodyStatus({ body_id: empire.home_planet_id });
-  expect(res.body).toBeDefined();
 });

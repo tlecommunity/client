@@ -13,11 +13,11 @@ class Captcha extends Endpoint {
   }
 
   fetch(params: C.FetchParams = {}): Promise<C.FetchResponse> {
-    return this.callWithSession('fetch', params);
+    return this.callWithSession('fetch', []);
   }
 
   solve(params: C.SolveParams): Promise<C.SolveResponse> {
-    return this.callWithSession('solve', params);
+    return this.callWithSession('solve', [params.guid, params.solution]);
   }
 }
 

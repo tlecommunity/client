@@ -1,4 +1,13 @@
-import * as endpoints from './endpoints';
+import {
+  Body,
+  Building,
+  Captcha,
+  Empire,
+  EssentiaVein,
+  Shipyard,
+  SpacePort,
+  Stats,
+} from './endpoints';
 import Log from './core/log';
 import Config from './core/config';
 import Server from './core/server';
@@ -9,18 +18,19 @@ import { version } from '../package.json';
 class Lacuna {
   version = version;
 
-  body: endpoints.Body;
-  captcha: endpoints.Captcha;
+  body: Body;
+  captcha: Captcha;
   config: Config;
-  empire: endpoints.Empire;
-  essentiaVein: endpoints.EssentiaVein;
+  empire: Empire;
+  essentiaVein: EssentiaVein;
   log: Log;
+  planetaryCommand: Building;
   server: Server;
   session: Session;
-  shipyard: endpoints.Shipyard;
-  spacePort: endpoints.SpacePort;
-  stats: endpoints.Stats;
-  university: endpoints.Building;
+  shipyard: Shipyard;
+  spacePort: SpacePort;
+  stats: Stats;
+  university: Building;
 
   constructor(config: LacunaConfig) {
     this.log = new Log(this);
@@ -31,18 +41,15 @@ class Lacuna {
     //
     // Endpoints
     //
-    this.body = new endpoints.Body(this, 'body');
-    this.captcha = new endpoints.Captcha(this, 'captcha');
-    this.empire = new endpoints.Empire(this, 'empire');
-    this.stats = new endpoints.Stats(this, 'stats');
-
-    //
-    // Buildings
-    //
-    this.essentiaVein = new endpoints.EssentiaVein(this, 'essentiavein');
-    this.shipyard = new endpoints.Shipyard(this, 'shipyard');
-    this.spacePort = new endpoints.SpacePort(this, 'spaceport');
-    this.university = new endpoints.Building(this, 'university');
+    this.body = new Body(this, 'body');
+    this.captcha = new Captcha(this, 'captcha');
+    this.empire = new Empire(this, 'empire');
+    this.essentiaVein = new EssentiaVein(this, 'essentiavein');
+    this.planetaryCommand = new Building(this, 'planetarycommand');
+    this.shipyard = new Shipyard(this, 'shipyard');
+    this.spacePort = new SpacePort(this, 'spaceport');
+    this.stats = new Stats(this, 'stats');
+    this.university = new Building(this, 'university');
   }
 
   async authenticate(name: string, password: string) {
@@ -58,7 +65,7 @@ class Lacuna {
   }
 
   buildingFromUrl(url: string) {
-    return new endpoints.Building(this, url);
+    return new Building(this, url);
   }
 }
 

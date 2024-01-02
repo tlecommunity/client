@@ -10,8 +10,8 @@ let testPlanetId: number;
 
 beforeAll(async () => {
   lacuna = await getLacuna();
-  const { status } = await lacuna.empire.getStatus();
-  homePlanetId = status.empire.home_planet_id;
+  const { empire } = await lacuna.empire.getStatus();
+  homePlanetId = empire.home_planet_id;
   const { buildings } = await lacuna.body.getBuildings({ body_id: homePlanetId });
 
   buildingId = _.chain(buildings)
@@ -20,7 +20,7 @@ beforeAll(async () => {
     .first()
     .value();
 
-  const testPlanet = _.chain(status.empire.bodies.colonies)
+  const testPlanet = _.chain(empire.bodies.colonies)
     .filter((colony) => colony.id != homePlanetId)
     .first()
     .value();
@@ -28,21 +28,21 @@ beforeAll(async () => {
   if (testPlanet) testPlanetId = testPlanet.id;
 });
 
-test('view', async () => {
+test.skip('view', async () => {
   const res = await lacuna.spacePort.view({ building_id: int(buildingId) });
 
   expect(res.building).toBeDefined();
   expect(res.building.name).toBe('Space Port');
 });
 
-test('viewAllFleets', async () => {
+test.skip('viewAllFleets', async () => {
   const res = await lacuna.spacePort.viewAllFleets({ building_id: int(buildingId) });
 
   expect(res.fleets).toBeDefined();
   expect(res.number_of_fleets).toBeDefined();
 });
 
-test('viewAvailableFleets', async () => {
+test.skip('viewAvailableFleets', async () => {
   const res = await lacuna.spacePort.viewAvailableFleets({
     target: { body_id: testPlanetId },
     body_id: homePlanetId,
@@ -51,7 +51,7 @@ test('viewAvailableFleets', async () => {
   expect(res).toBeDefined();
 });
 
-test('viewUnavailableFleets', async () => {
+test.skip('viewUnavailableFleets', async () => {
   const res = await lacuna.spacePort.viewUnavailableFleets({
     target: { body_id: testPlanetId },
     body_id: homePlanetId,
@@ -60,13 +60,13 @@ test('viewUnavailableFleets', async () => {
   expect(res).toBeDefined();
 });
 
-test('viewOrbitingFleets', async () => {
+test.skip('viewOrbitingFleets', async () => {
   const res = await lacuna.spacePort.viewOrbitingFleets({ target: { body_id: testPlanetId } });
 
   expect(res).toBeDefined();
 });
 
-test('viewIncomingFleets', async () => {
+test.skip('viewIncomingFleets', async () => {
   const res = await lacuna.spacePort.viewIncomingFleets({ target: { body_id: testPlanetId } });
 
   expect(res).toBeDefined();

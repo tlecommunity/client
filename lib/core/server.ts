@@ -37,13 +37,13 @@ class Server {
 
     if (options.addSession === true && sessionId) {
       if (_.isArray(options.params)) {
+        options.params = [sessionId].concat(options.params);
+      } else {
         this.lacuna.log.warn(
           `${_.capitalize(options.module)}#${
             options.method
-          } called with positional args. This will go away very soon!`
+          } called with named args. This is probably an error!`
         );
-        options.params = [sessionId].concat(options.params);
-      } else {
         options.params = { ...options.params, session_id: sessionId };
       }
     }

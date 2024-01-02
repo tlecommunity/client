@@ -13,7 +13,7 @@ class Empire extends Endpoint {
   }
 
   credits(): Promise<S.CreditsResult> {
-    return this.callWithSession('credits', {});
+    return this.callWithSession('credits', []);
   }
 }
 
