@@ -1,7 +1,7 @@
 {
   "name": "@tlecommunity/client",
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "API Client for the community edition of The Lacuna Expanse",
   "files": [
     "dist"
@@ -29,10 +29,10 @@
     "@types/jest": "^29.5.11",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.2",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10"
+    "vite": "^5.0.11"
   },
   "engines": {
     "node": ">=20",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.202",
-    "axios": "^1.6.3",
+    "axios": "^1.6.5",
     "lodash": "^4.17.21",
     "moment": "^2.30.1"
   }
