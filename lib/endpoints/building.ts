@@ -12,20 +12,20 @@ class Building extends Endpoint {
     this.url = url;
   }
 
-  view(params: B.ViewParams): Promise<B.ViewResponse> {
-    return this.callWithSession('view', [params.building_id]);
+  view(params: B.ViewParams) {
+    return this.callWithSession<B.ViewResponse>('view', [params.building_id]);
   }
 
-  upgrade(params: B.UpgradeParams): Promise<B.UpgradeResponse> {
-    return this.callWithSession('upgrade', [params.building_id]);
+  upgrade(params: B.UpgradeParams) {
+    return this.callWithSession<B.UpgradeResponse>('upgrade', [params.building_id]);
   }
 
-  downgrade(params: B.DowngradeParams): Promise<B.DowngradeResponse> {
-    return this.callWithSession('downgrade', [params.building_id]);
+  downgrade(params: B.DowngradeParams) {
+    return this.callWithSession<B.DowngradeResponse>('downgrade', [params.building_id]);
   }
 
-  demolish(params: B.DemolishParams): Promise<B.DemolishResponse> {
-    return this.callWithSession('demolish', [params.building_id]);
+  demolish(params: B.DemolishParams) {
+    return this.callWithSession<B.DemolishResponse>('demolish', [params.building_id]);
   }
 }
 

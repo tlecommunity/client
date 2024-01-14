@@ -7,22 +7,20 @@ class Shipyard extends Building {
     super(lacuna, url);
   }
 
-  viewBuildQueue(params: SY.ViewBuildQueueParams): Promise<SY.ViewBuildQueueResponse> {
-    return this.callWithSession('view_build_queue', params);
+  viewBuildQueue(params: SY.ViewBuildQueueParams) {
+    return this.callWithSession<SY.ViewBuildQueueResponse>('view_build_queue', params);
   }
 
-  subsidizeBuildQueue(
-    params: SY.SubsidizeBuildQueueParams
-  ): Promise<SY.SubsidizeBuildQueueResponse> {
-    return this.callWithSession('subsidize_build_queue', params);
+  subsidizeBuildQueue(params: SY.SubsidizeBuildQueueParams) {
+    return this.callWithSession<SY.SubsidizeBuildQueueResponse>('subsidize_build_queue', params);
   }
 
-  getBuildable(params: SY.GetBuildableParams): Promise<SY.GetBuildableResponse> {
-    return this.callWithSession('get_buildable', params);
+  getBuildable(params: SY.GetBuildableParams) {
+    return this.callWithSession<SY.GetBuildableResponse>('get_buildable', params);
   }
 
-  buildFleet(params: SY.BuildFleetParams): Promise<SY.BuildFleetResponse> {
-    return this.callWithSession('build_fleet', params);
+  buildFleet(params: SY.BuildFleetParams) {
+    return this.callWithSession<SY.BuildFleetResponse>('build_fleet', params);
   }
 }
 

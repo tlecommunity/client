@@ -7,8 +7,12 @@ let pccId: number;
 
 beforeAll(async () => {
   lacuna = await getLacuna();
-  const { empire } = await lacuna.empire.getStatus();
-  const { buildings } = await lacuna.body.getBuildings({ body_id: empire.home_planet_id });
+  const {
+    result: { empire },
+  } = await lacuna.empire.getStatus();
+  const {
+    result: { buildings },
+  } = await lacuna.body.getBuildings({ body_id: empire?.home_planet_id });
   pccId = _.chain(buildings)
     .keys()
     .filter((key) => buildings[key].name === 'Planetary Command Center')
@@ -18,7 +22,7 @@ beforeAll(async () => {
 });
 
 test('view', async () => {
-  const res = await lacuna.planetaryCommand.view({ building_id: pccId });
-  expect(res.building).toBeDefined();
-  expect(res.building.name).toBe('Planetary Command Center');
+  const { result } = await lacuna.planetaryCommand.view({ building_id: pccId });
+  expect(result?.building).toBeDefined();
+  expect(result?.building.name).toBe('Planetary Command Center');
 });

@@ -3,20 +3,25 @@ import _ from 'lodash';
 import axios from 'axios';
 import { fixNumbers } from './util';
 
-interface ServerRequest {
+export interface ServerRequest {
   module: string;
   method: string;
   params: object | Array<any>;
   addSession: boolean;
 }
 
-interface ServerError {
+export interface ServerResponse<T> {
+  result?: T;
+  error?: ServerError;
+}
+
+export interface ServerError {
   code: number;
   message: string;
   data: any;
 }
 
-interface RequestBody {
+export interface RequestBody {
   jsonrpc: '2.0';
   id: number;
   method: string;
@@ -64,11 +69,16 @@ class Server {
     return new URL(options.module, this.lacuna.config.serverUrl).href;
   }
 
-  async sendRequest(url: string, data: string, options: ServerRequest, retry: Function) {
+  async sendRequest<T>(
+    url: string,
+    data: string,
+    options: ServerRequest,
+    retry: Function
+  ): Promise<ServerResponse<T>> {
     this.lacuna.log.info('Calling', `${options.module}/${options.method}`, options.params);
 
     try {
-      const response = await axios({
+      const response = await axios<ServerResponse<T>>({
         url,
         data: data,
         method: 'post',
@@ -88,7 +98,7 @@ class Server {
           }
         }
 
-        return result;
+        return { result };
       }
     } catch (e) {
       // MenuStore.hideLoader();
@@ -105,12 +115,14 @@ class Server {
         // TODO
         console.error(error.code, error.message, error.data);
       }
+
+      return { error };
     }
 
-    return null;
+    return {};
   }
 
-  call(obj: ServerRequest) {
+  call<T>(obj: ServerRequest) {
     // MenuStore.showLoader();
 
     const options = this.addSession(obj);
@@ -122,7 +134,7 @@ class Server {
       await this.call(obj);
     };
 
-    return this.sendRequest(url, data, options, retry);
+    return this.sendRequest<T>(url, data, options, retry);
   }
 }
 

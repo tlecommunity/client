@@ -12,20 +12,20 @@ class Empire extends Endpoint {
     this.url = url;
   }
 
-  fetchCaptcha(params: E.FetchCaptchaParams = {}): Promise<E.FetchCaptchaResponse> {
-    return this.callWithSession('fetch_captcha', []);
+  fetchCaptcha(params: E.FetchCaptchaParams = {}) {
+    return this.callWithSession<E.FetchCaptchaResponse>('fetch_captcha', []);
   }
 
-  viewBoosts(params: E.ViewBoostsParams = {}): Promise<E.ViewBoostsResult> {
-    return this.callWithSession('view_boosts', []);
+  viewBoosts(params: E.ViewBoostsParams = {}) {
+    return this.callWithSession<E.ViewBoostsResult>('view_boosts', []);
   }
 
-  getStatus(params: E.GetStatusParams = {}): Promise<E.GetStatusResponse> {
-    return this.callWithSession('get_status', []);
+  getStatus(params: E.GetStatusParams = {}) {
+    return this.callWithSession<E.GetStatusResponse>('get_status', []);
   }
 
-  login(params: E.LoginParams): Promise<E.LoginResponse> {
-    return this.callWithoutSession('login', [
+  login(params: E.LoginParams) {
+    return this.callWithoutSession<E.LoginResponse>('login', [
       params.name,
       params.password,
       params.api_key,
@@ -33,12 +33,12 @@ class Empire extends Endpoint {
     ]);
   }
 
-  logout(): Promise<E.LogoutResponse> {
-    return this.callWithSession('logout', []);
+  logout() {
+    return this.callWithSession<E.LogoutResponse>('logout', []);
   }
 
-  setBoost(params: E.BoostParams): Promise<E.ViewBoostsResult> {
-    return this.callWithSession('set_boost', [params.type, params.weeks]);
+  setBoost(params: E.BoostParams) {
+    return this.callWithSession<E.ViewBoostsResult>('set_boost', [params.type, params.weeks]);
   }
 }
 

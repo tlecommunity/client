@@ -7,8 +7,8 @@ class EssentiaVein extends Building {
     super(lacuna, url);
   }
 
-  drain(params: EV.DrainParams): Promise<EV.DrainResponse> {
-    return this.callWithSession('drain', [params.buildingId, params.times]);
+  drain(params: EV.DrainParams) {
+    return this.callWithSession<EV.DrainResponse>('drain', [params.buildingId, params.times]);
   }
 }
 

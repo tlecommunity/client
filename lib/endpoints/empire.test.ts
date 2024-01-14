@@ -5,7 +5,7 @@ test('login with errors', async () => {
   const lacuna = new Lacuna({ serverUrl: 'http://localhost:8080/' });
   console.error = jest.fn();
 
-  await lacuna.empire.login({
+  const { error } = await lacuna.empire.login({
     name: 'non-existant-empire',
     password: 'incorrect-password',
     browser: 'todo',
@@ -13,64 +13,66 @@ test('login with errors', async () => {
   });
 
   expect(console.error).toHaveBeenCalledWith(1002, 'Empire does not exist.', 'non-existant-empire');
+  expect(error).toBeDefined();
 });
 
 test('login', async () => {
   const lacuna = new Lacuna({ serverUrl: 'http://localhost:8080/' });
-  const res = await lacuna.empire.login({
+  const { result } = await lacuna.empire.login({
     name: 'natalie',
     password: '1234qwer',
     browser: 'todo',
     api_key: 'anonymous',
   });
-  expect(res.session_id).toBeDefined();
+  expect(result?.session_id).toBeDefined();
 });
 
 test('logout', async () => {
   const lacuna = await getLacuna();
-  const res = await lacuna.empire.logout();
-  expect(res).toBe(1);
+  const response = await lacuna.empire.logout();
+  expect(response?.result).toBe(1);
 });
 
 test('viewBoosts', async () => {
   const lacuna = await getLacuna();
 
-  const { boosts } = await lacuna.empire.viewBoosts();
+  const { result } = await lacuna.empire.viewBoosts();
 
-  expect(boosts.food).toBeDefined();
-  expect(boosts.ore).toBeDefined();
-  expect(boosts.water).toBeDefined();
-  expect(boosts.energy).toBeDefined();
-  expect(boosts.storage).toBeDefined();
-  expect(boosts.spy_training).toBeDefined();
-  expect(boosts.building).toBeDefined();
-  expect(boosts.happiness).toBeDefined();
+  expect(result?.boosts.food).toBeDefined();
+  expect(result?.boosts.ore).toBeDefined();
+  expect(result?.boosts.water).toBeDefined();
+  expect(result?.boosts.energy).toBeDefined();
+  expect(result?.boosts.storage).toBeDefined();
+  expect(result?.boosts.spy_training).toBeDefined();
+  expect(result?.boosts.building).toBeDefined();
+  expect(result?.boosts.happiness).toBeDefined();
 });
 
 test('getStatus', async () => {
   const lacuna = await getLacuna();
 
-  const res = await lacuna.empire.getStatus();
+  const { result } = await lacuna.empire.getStatus();
 
-  expect(res.empire).toBeDefined();
-  expect(res.server).toBeDefined();
-  expect(res.empire.name).toBe('natalie');
+  expect(result?.empire).toBeDefined();
+  expect(result?.server).toBeDefined();
+  expect(result?.empire.name).toBe('natalie');
 });
 
 test('setBoost', async () => {
   const lacuna = await getLacuna();
   console.error = jest.fn();
 
-  await lacuna.empire.setBoost({ type: 'invalidtype', weeks: -0 });
+  const { error } = await lacuna.empire.setBoost({ type: 'invalidtype', weeks: -0 });
 
   expect(console.error).toHaveBeenCalled();
+  expect(error).toBeDefined();
 });
 
 test('fetchCaptcha', async () => {
   const lacuna = await getLacuna();
 
-  const res = await lacuna.empire.fetchCaptcha();
+  const { result } = await lacuna.empire.fetchCaptcha();
 
-  expect(res.guid).toBeDefined();
-  expect(res.url).toBeDefined();
+  expect(result?.guid).toBeDefined();
+  expect(result?.url).toBeDefined();
 });

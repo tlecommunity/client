@@ -12,8 +12,8 @@ class Empire extends Endpoint {
     this.url = url;
   }
 
-  credits(): Promise<S.CreditsResult> {
-    return this.callWithSession('credits', []);
+  credits() {
+    return this.callWithSession<S.CreditsResult>('credits', []);
   }
 }
 

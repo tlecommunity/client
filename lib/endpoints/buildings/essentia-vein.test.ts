@@ -10,7 +10,8 @@ beforeAll(async () => {
 test('drain', async () => {
   console.error = jest.fn();
 
-  await lacuna.essentiaVein.drain({ buildingId: 123456789, times: 123456789 });
+  const { error } = await lacuna.essentiaVein.drain({ buildingId: 123456789, times: 123456789 });
 
   expect(console.error).toHaveBeenCalled();
+  expect(error).toBeDefined();
 });

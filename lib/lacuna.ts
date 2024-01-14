@@ -53,15 +53,19 @@ class Lacuna {
   }
 
   async authenticate(name: string, password: string) {
-    const res = await this.empire.login({
+    const { result, error } = await this.empire.login({
       name,
       password,
       api_key: this.config.apiKey,
       browser: this.config.fingerprintToken,
     });
 
-    this.session.set(res.session_id);
-    this.log.info(`Logged in as ${name}`);
+    if (result) {
+      this.session.set(result.session_id);
+      this.log.info(`Logged in as ${name}`);
+    } else if (error) {
+      this.log.error('Could not log in', error);
+    }
   }
 
   buildingFromUrl(url: string) {

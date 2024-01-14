@@ -4,12 +4,12 @@ abstract class Endpoint {
   abstract lacuna: Lacuna;
   abstract url: string;
 
-  callWithSession(method: string, params: any) {
-    return this.lacuna.server.call({ module: this.url, method, params, addSession: true });
+  callWithSession<T>(method: string, params: any) {
+    return this.lacuna.server.call<T>({ module: this.url, method, params, addSession: true });
   }
 
-  callWithoutSession(method: string, params: any) {
-    return this.lacuna.server.call({ module: this.url, method, params, addSession: false });
+  callWithoutSession<T>(method: string, params: any) {
+    return this.lacuna.server.call<T>({ module: this.url, method, params, addSession: false });
   }
 }
 

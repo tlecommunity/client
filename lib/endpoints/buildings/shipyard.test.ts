@@ -8,8 +8,12 @@ let buildingId: string;
 
 beforeAll(async () => {
   lacuna = await getLacuna();
-  const { empire } = await lacuna.empire.getStatus();
-  const { buildings } = await lacuna.body.getBuildings({ body_id: empire.home_planet_id });
+  const {
+    result: { empire },
+  } = await lacuna.empire.getStatus();
+  const {
+    result: { buildings },
+  } = await lacuna.body.getBuildings({ body_id: empire.home_planet_id });
   buildingId = _.chain(buildings)
     .keys()
     .filter((key) => buildings[key].name === 'Shipyard')
@@ -18,26 +22,26 @@ beforeAll(async () => {
 });
 
 test.skip('view', async () => {
-  const res = await lacuna.shipyard.view({ building_id: int(buildingId) });
+  const { result } = await lacuna.shipyard.view({ building_id: int(buildingId) });
 
-  expect(res.building).toBeDefined();
-  expect(res.building.name).toBe('Shipyard');
+  expect(result?.building).toBeDefined();
+  expect(result?.building.name).toBe('Shipyard');
 });
 
 test.skip('viewBuildQueue', async () => {
-  const res = await lacuna.shipyard.viewBuildQueue({ building_id: int(buildingId) });
+  const { result } = await lacuna.shipyard.viewBuildQueue({ building_id: int(buildingId) });
 
-  expect(res.cost_to_subsidize).toBeDefined();
-  expect(res.fleets_building).toBeDefined();
-  expect(res.number_of_fleets_building).toBeDefined();
-  expect(res.number_of_ships_building).toBeDefined();
+  expect(result?.cost_to_subsidize).toBeDefined();
+  expect(result?.fleets_building).toBeDefined();
+  expect(result?.number_of_fleets_building).toBeDefined();
+  expect(result?.number_of_ships_building).toBeDefined();
 });
 
 test.skip('getBuildable', async () => {
-  const res = await lacuna.shipyard.getBuildable({ building_id: int(buildingId) });
+  const { result } = await lacuna.shipyard.getBuildable({ building_id: int(buildingId) });
 
-  expect(res.buildable).toBeDefined();
-  expect(res.build_queue_max).toBeDefined();
-  expect(res.build_queue_used).toBeDefined();
-  expect(res.docks_available).toBeDefined();
+  expect(result?.buildable).toBeDefined();
+  expect(result?.build_queue_max).toBeDefined();
+  expect(result?.build_queue_used).toBeDefined();
+  expect(result?.docks_available).toBeDefined();
 });
