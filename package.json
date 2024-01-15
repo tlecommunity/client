@@ -1,7 +1,7 @@
 {
   "name": "@tlecommunity/client",
   "type": "module",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "API Client for the community edition of The Lacuna Expanse",
   "files": [
     "dist"
