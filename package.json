@@ -8,7 +8,7 @@
   ],
   "main": "./dist/client.umd.js",
   "module": "./dist/client.mjs",
-  "types": "./dist/",
+  "types": "./dist/lib/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/client.mjs",
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "prepare": "npm run types && npm test && npm run build",
-    "build": "vite build && tsc --emitDeclarationOnly --outDir dist",
+    "build": "vite build",
     "test": "jest --coverage",
     "types": "tsc --noEmit",
     "lint": "prettier --check **/*.{ts,tsx,md,js,jsx,css,scss,yml}",
@@ -32,7 +32,8 @@
     "prettier": "^3.2.2",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.11"
+    "vite": "^5.0.11",
+    "vite-plugin-dts": "^3.7.0"
   },
   "engines": {
     "node": ">=20",
