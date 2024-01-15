@@ -6,8 +6,8 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/client.umd.js",
-  "module": "./dist/client.mjs",
+  "main": "./dist/client.umd.cjs",
+  "module": "./dist/client.js",
   "types": "./dist/lib/index.d.ts",
   "exports": {
     ".": {
